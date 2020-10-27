@@ -10,6 +10,8 @@
 
 <br>
 
+#### JSX & Props
+
 - index.js 안에는 한개의 Component 밖에 불러올 수 없다.
 
   ```javascript
@@ -153,3 +155,165 @@
   ```
 
   > 확인하고 자 하는 `function`에 `.propTypes`를 이용해 `name`,`picture`,`rating`의 Type가 맞는지 안맞는지 console에서 확인하는 Method.
+
+- Food 예제 끝
+
+  ```javascript
+  import React from "react";
+  import propTypes from "prop-types";
+
+  function Food({ name, picture, rating }) {
+    return (
+      <div>
+        <h2>I like {name}</h2>
+        <h4>{rating}/5.0</h4>
+        <img src={picture} alt={name} />
+      </div>
+    );
+  }
+  Food.propTypes = {
+    name: propTypes.string.isRequired,
+    picture: propTypes.string.isRequired,
+    rating: propTypes.number,
+  };
+
+  const foodILike = [
+    {
+      id: 1,
+      name: "Kimchi",
+      image:
+        "https://steemitimages.com/DQmUCKzQx9R5UTHwm91PwyUv236V1SJeJXFaN8C5sJW4GEM/2c77e779b5a5caa8d129a105a34e677a093927.jpg",
+      // rating: 5,
+    },
+    {
+      id: 2,
+      name: "Samgyeopsal",
+      image:
+        "https://mp-seoul-image-production-s3.mangoplate.com/96659/3ssglwlvecxz9r.jpg",
+      rating: 4.9,
+    },
+  ];
+
+  function renderFood(dish) {
+    return (
+      <Food
+        key={dish.id}
+        name={dish.name}
+        picture={dish.image}
+        rating={dish.rating}
+      />
+    );
+  }
+  function App() {
+    return <div>{foodILike.map(renderFood)}</div>;
+  }
+
+  export default App;
+  ```
+
+<br>
+
+---
+
+<br>
+
+### 2020-10-27
+
+<br>
+
+#### State
+
+- 개요
+  <br>
+  `state`을 사용하려면 React component class 를 정의를 해야합니다. `react.component`를 상속받아야 한다.
+  ```jsx
+  class Welcome extends React.Component {
+    render() {
+      return <h1>Hello, {this.props.name}</h1>;
+    }
+  }
+  ```
+  > `React.Component` 은 `return` 을 가지고있지않고 `render()` 라는 메소드를 가지고 있다.<br>
+  > function component 는 function 이고 어떤것을 return 하고 screen에 표시된다. class component 는 class여야 하지만 React component로 부터 확장되고 csreen에 표시된다.<br>
+  > React 는 자동적으로 모든 class component의 render 메소드를 실행하고자 한다.
+
+<br>
+
+- State 변형되는 데이터
+
+  ```jsx
+  class App extends React.Component{
+    state = {
+      count: 0,
+    };
+    render(){
+      return(
+        console.log(this.state.count);
+      )
+    }
+  }
+  ```
+
+  > 출력값 = 0
+
+- State 값 변형
+
+  ```jsx
+  class App extends React.Component {
+    state = {
+      count: 0,
+    };
+    add = () => {
+      this.setState({ count: this.state.count + 1 });
+    };
+    render() {
+      return (
+        <div>
+          <h1>The number is : {this.state.count}</h1>
+          <button onClick={this.add}>Add</button>
+        </div>
+      );
+    }
+  }
+  ```
+
+  > `state`의 값을 `this.state.count += 1` 하게되면 실행이 되지않는다. <br>그러나 `setState()`을 사용하면 업데이트? 의 기능을 쓸수 있다.<br>
+  > 하지만`setState()`을 할 때, react 에서 외부의 상태에 의존하는것은 좋지 않은 방법이다.
+
+  ```jsx
+  state = {
+    count: 0,
+  };
+  add = () => {
+    // 값을 업데이트할 때 `this.state` 대신 `state` 값을 읽어 온다.
+    this.setState((current) => ({ count: current.count + 1 }));
+  };
+  ```
+
+### React component Method
+
+- Mount
+
+  아래 메서드들은 컴포넌트의 인스턴스가 생성되어 DOM 상에 삽입될 때에 순서대로 호출됩니다.
+
+  - **constructor()**
+  - static getDerivedStateFromProps()
+  - **render()**
+  - **componentDidMount()**
+
+- Update
+
+  props 또는 state가 변경되면 갱신이 발생. 아래 메서드들은 render 될때 순서대로 실행.
+
+  - static getDerivedStateFromProps()
+  - shouldComponentUpdate()
+  - **render()**
+  - getSnapshotBeforeUpdate()
+  - **componentDidUpdate()**
+    > `componentDidUpdate()` 는 업데이트가 끝나고 render되고 나서 실행.
+
+- Unmount
+
+  컴포넌트가 마운트 해제되어 제거되기 직전에 호출
+
+  - **componentWillUnmount()**
