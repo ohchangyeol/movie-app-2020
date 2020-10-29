@@ -1,6 +1,6 @@
 # Movie App 2020
 
-## React JS Fundamentals Course (2020 Update!)
+## React JS Fundamentals Course
 
 ---
 
@@ -290,7 +290,7 @@
   };
   ```
 
-### React component Method
+#### React component Method
 
 - Mount
 
@@ -317,3 +317,107 @@
   컴포넌트가 마운트 해제되어 제거되기 직전에 호출
 
   - **componentWillUnmount()**
+
+<br>
+
+---
+
+<br>
+
+### 2020-10-29
+
+<br>
+
+#### axios
+
+- 설명
+
+  > JavaScript를 사용한 비동기 통신, 클라이언트와 서버간에 XML 데이터를 주고받는 기술이다.
+  > axios 는 fetch 위에 있는 작은 layer
+  > axios 는 XML데이터를 가져오는게 느리기 때문에 약간의 시간이 있어야 한다.
+
+- 설치
+  ```
+  npm i axios
+  ```
+
+#### async()와 await
+
+- 설명
+
+  > 데이터를 기다리기 위해 `async()` 라는 비동기 함수를 쓰고 어떤것을 기다리는 지 묻는 `await` 를 쓴다.
+
+  ```jsx
+  getMovies = async () => {
+    const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+  };
+  ```
+
+#### 간단하게 쓰기 위한 ES6 문법
+
+- 구조 분해 문법
+
+  ```jsx
+  const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+  console.log(movies.data.data.movies);
+  ```
+
+  ```jsx
+  const {
+    data: {
+      data: { movies },
+    },
+  } = await axios.get(
+    "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
+  );
+  console.log(movies);
+  // movies.data.data.movies 와 {data:{data:{movies}}}의 차이
+  ```
+
+  > `axios.get()`를 전체적인 객체로 잡고 그안으로 들어가서 찾는 것과,
+  > `axios.get()`안에 있는 `data`안에 `data`안에 `movies`를 객체로 잡는것의 차이
+
+  ```jsx
+  state = {
+    isLoading: true,
+    movies: [],
+  };
+
+  const isLoading = this.state.isLoading;
+  const movies = this.state.movies;
+  console.log(isLoading);
+  console.log(movies);
+  ```
+
+  ```jsx
+  state = {
+    isLoading: true,
+    movies: [],
+  };
+
+  const { isLoading, movies } = this.state;
+  console.log(isLoading);
+  console.log(movies);
+  ```
+
+- if문의 축약형, 삼항 조건 연산자
+
+  ```jsx
+  condition ? expr1 : expr2;
+  ```
+
+  > condition 은 조건을 나타내는 표현식이 들어가는 자리입니다. (조건문의 결과는 true, false 둘 중 하나가 나오는 표현식)<br>
+  > expr1 은 조건문이 참일때 반환되는 표현식이고, expr2 는 조건문이 거짓일 때 반환되는 표현식
+
+  ```jsx
+  const { isLoading, movies } = this.state;
+  return <div>{isLoading ? "Loading..." : "i'm ready"}</div>;
+  ```
+
+  ```jsx
+  if ((isLoading = ture)) {
+    return <div>Loading...</div>;
+  } else {
+    return <div>i'm ready</div>;
+  }
+  ```
