@@ -6,11 +6,7 @@
 
 <br>
 
-### 2020-10-26
-
-<br>
-
-#### JSX & Props
+### JSX & Props
 
 - index.js 안에는 한개의 Component 밖에 불러올 수 없다.
 
@@ -213,15 +209,7 @@
 
 <br>
 
----
-
-<br>
-
-### 2020-10-27
-
-<br>
-
-#### State
+### State
 
 - 개요
   <br>
@@ -290,7 +278,7 @@
   };
   ```
 
-#### React component Method
+### React component Method
 
 - Mount
 
@@ -320,15 +308,7 @@
 
 <br>
 
----
-
-<br>
-
-### 2020-10-29
-
-<br>
-
-#### axios
+### axios
 
 - 설명
 
@@ -341,7 +321,7 @@
   npm i axios
   ```
 
-#### async()와 await
+### async()와 await
 
 - 설명
 
@@ -353,7 +333,7 @@
   };
   ```
 
-#### 간단하게 쓰기 위한 ES6 문법
+### 간단하게 쓰기 위한 ES6 문법
 
 - 구조 분해 문법
 
