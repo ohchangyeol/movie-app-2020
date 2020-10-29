@@ -53,7 +53,11 @@
   }
   ```
 
-- array.map()의 이해
+### array.map()
+
+- 설명
+
+  > map()메서드는 배열(array)내의 모든 요소 각각에 대하여 주어진 함수를 호출한 결과를 가진 새로운 배열을 만들어낸다. 맵 메서드로 맵핑해준다!
 
   ```javascript
   function Food({ name, picture }) {
@@ -88,19 +92,25 @@
 
   > > `<Food name={dish.name} picture={dish.image} />` food 의 props를 이용해 dish 안에 있는 value를 사용하여 응용한다.<br>`id`가 없을 때 다른 `name`, 다른 `image`지만 모든 element들이 같아보일수 있어 `id`를 넣어주어 다른 element 임을 지정 해준다.<br> `Key`는 prop에 적용되지 않는다.
 
-- propTypes
+### propTypes
+
+- 설명
+
+  > 확인하고 자 하는 `function`에 `.propTypes`를 이용해 `name`,`picture`,`rating`의 Type가 맞는지 안맞는지 console에서 확인하는 Method.
+
+- npm을 설치
 
   ```
   npm i prop-types
   ```
 
-  > npm을 설치
+- 오류 대처법
 
   ```
   npm i
   ```
 
-  > 오류 대처법
+- 예제
 
   ```javascript
   const foodILike = [
@@ -150,11 +160,9 @@
   };
   ```
 
-  > 확인하고 자 하는 `function`에 `.propTypes`를 이용해 `name`,`picture`,`rating`의 Type가 맞는지 안맞는지 console에서 확인하는 Method.
+### 연습
 
-- Food 예제 끝
-
-  ```javascript
+- ```jsx
   import React from "react";
   import propTypes from "prop-types";
 
