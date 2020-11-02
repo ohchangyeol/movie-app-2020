@@ -92,6 +92,26 @@
 
   > > `<Food name={dish.name} picture={dish.image} />` food 의 props를 이용해 dish 안에 있는 value를 사용하여 응용한다.<br>`id`가 없을 때 다른 `name`, 다른 `image`지만 모든 element들이 같아보일수 있어 `id`를 넣어주어 다른 element 임을 지정 해준다.<br> `Key`는 prop에 적용되지 않는다.
 
+- 추가 설명
+
+  > `map()`에는 고유 `key` 값을 넣어야 오류가 없이 되는데 `map()`에는 자체적으로 지원 해 주기도 한다.
+
+  ```jsx
+  {stateData.map( one => ( { one } { two }} )}
+
+  {stateData.map( ( one, two ) =>( { one } { two }) )}
+  ```
+
+  ```jsx
+  <ul className="movie_genres">
+    {genres.map((genre, index) => (
+      <li key={index} className="genres_genre">
+        {genre}
+      </li>
+    ))}
+  </ul>
+  ```
+
 ### propTypes
 
 - 설명
@@ -158,6 +178,12 @@
     picture: propTypes.string.isRequired,
     rating: propTypes.number,
   };
+  ```
+
+- array 의 propTypes
+
+  ```jsx
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired;
   ```
 
 ### 연습

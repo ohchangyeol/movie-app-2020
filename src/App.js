@@ -6,6 +6,7 @@ import axios from "axios";
 // axios 는 데이터를 가져오는게 느리기 때문에 약간의 시간이 있어야 한다.
 //  그것을 기다리기 위해 async() 라는 비동기 함수를 쓰고 어떤것을 기다리는 지 묻는 await 를 쓴다.
 import Movie from "./Movie"
+import "./App.css"
 class App extends React.Component{
   state = {
     isLoading : true,
@@ -28,9 +29,27 @@ class App extends React.Component{
   render (){
     const { isLoading, movies } = this.state;
     // ES6 의 구조 분해 문법
-    return (<div>{isLoading ? "Loading..." : movies.map(movie=>(
-      <Movie key={movie.id} id={movie.id} year={movie.year} title={movie.title} summary={movie.summary} poster={movie.medium_cover_image}/>
-    ))}</div>)
+    return (
+    <section className ="container">
+      {isLoading ? 
+        <div className ="loader">
+          <span className ="loader_text">Loading...</span>
+        </div> : 
+        <div className ='movies'>
+          {movies.map(movie=>(
+            <Movie 
+              key={movie.id} 
+              id={movie.id} 
+              year={movie.year} 
+              title={movie.title} 
+              summary={movie.summary} 
+              poster={movie.medium_cover_image}
+              genres={movie.genres}
+            />
+          ))}
+        </div>  
+      }
+    </section>)
     
     // 원리
     // 처음 렌더가 되면 isLoading 가 ture면 div를 생성해 Loading... 라는 문구가 나오게 되고 didMount가 실행이 되면 axiosget()url 안에있는 data>data>movies 를 넣게 되고 setstate로 state 값을 변경한다.
