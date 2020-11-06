@@ -435,3 +435,35 @@
     return <div>i'm ready</div>;
   }
   ```
+
+### gh-page
+
+- 설명
+
+  > GitHub Pages는 GitHub 저장소(repository)를 이용해 웹 사이트를 무료로 호스팅해주는 서비스
+
+- 설치
+
+  ```
+    npm i gh-pages
+  ```
+
+- package.JSON 수정
+
+  ```jsx
+  {
+    "homepage": "https://ohchangyeol.github.io/movie_app_2020"
+  }
+  ```
+
+  ```jsx
+  "scripts": {
+    "deploy":"gh-pages -d build",
+    "predeploy":"npm run build"
+  },
+  ```
+
+  > `script` 항목에 `predeploy`와 `deploy` 항목을 추가한다. 만약 스크립트 앞에 `pre`가 붙으면 그 스크립트를 먼저 실행한다. 따라서 `npm run deploy`를 실행하면 `npm run predeploy`가 먼저 실행되고 `npm run deploy`가 실행된다.
+
+  - `npm run build` : 현재 프로젝트 코드를 빌드
+  - `gh-pages -d build` : build 디렉토리(`-d`)에 있는 파일을 GitHub Pages에 업로드한다
