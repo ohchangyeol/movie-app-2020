@@ -445,14 +445,14 @@
 - 설치
 
   ```
-    npm i gh-pages
+  npm i gh-pages
   ```
 
 - package.JSON 수정
 
   ```jsx
   {
-    "homepage": "https://ohchangyeol.github.io/movie_app_2020"
+    "homepage": "https://(GitHub ID).github.io/(Repository name)/"
   }
   ```
 
@@ -467,3 +467,62 @@
 
   - `npm run build` : 현재 프로젝트 코드를 빌드
   - `gh-pages -d build` : build 디렉토리(`-d`)에 있는 파일을 GitHub Pages에 업로드한다
+
+### react-router-dom
+
+- 설치
+
+  ```
+  react-router-dom
+  ```
+
+- BrowserRouter
+
+  - Link 컴포넌트 to속성에 이동할 경로 기술
+  - Route 컴포넌트 path속성을 Link의 to속성과 매핑 component에 컴포넌트 경로 기술
+  - 새로고침 하면 경로 못찾아서 에러남
+
+- **HashRouter**
+
+  - 주소에 해쉬(#)이 붙음
+  - 새로 고침해도 그대로 나옴 -> #뒤에는 화면에서 읽는 경로이기 때문
+  - 검색엔진으로 못읽는 단점때문에 거의 안씀
+
+  ```jsx
+  function App() {
+    return (
+      <HashRouter>
+        <Root />
+      </HashRouter>
+    );
+  }
+  ```
+
+- **Route**
+
+  ```jsx
+  function App() {
+    return (
+      <HashRouter>
+        <Navigation />
+        <Route path="/" exact={true} component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/movie/:id" component={Detail} />
+      </HashRouter>
+    );
+  }
+  ```
+
+  - `Route`로 컴포넌트를 사용하고 `path`로 값을 지정함
+  - 첫번째 Route `/`의 경우에는 `component`를 `Home`로 연결
+  - 첫번째 Route에서 `exact`는 `/`와 주어진 경로에 정확히 맞아 떨어져야만 설정한 컴포넌트를 보여줌
+
+- **Link**
+
+  > html 에서는 `a`태그랑 비슷한 기능을 보여준다. 하지만 `a`태그는 새로고침이 일어나는데<br> > `Link`는 일어나지 않는다.
+
+  ```html
+   <a href="/">Home</a>
+
+   <Link to ="/">Home</Link>
+  ```
