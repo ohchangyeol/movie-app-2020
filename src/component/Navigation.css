@@ -1,35 +1,81 @@
 .nav {
   z-index: 1;
-  position: fixed;
-  top: 50px;
-  left: 10px;
+  position: sticky;
+  top: 0;
+  left:0;
+  right: 0;
+  bottom: 0;
+  min-width: 225px;
+  max-width: 225px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: white;
   padding: 10px 20px;
-  box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
-    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
-  border-radius: 5px;
+  box-shadow: 0 13px 0px 0px rgba(50, 50, 93, 0.25), 0 8px 10px 0px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+  /* border-radius: 5px; */
 }
-
-@media screen and (max-width: 1090px) {
-  .nav {
-    left: initial;
-    top: initial;
-    bottom: 0px;
-    width: 100%;
-  }
-}
-
 .nav a {
   text-decoration: none;
-  color: #0008fc;
+  color: #fff;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
   font-weight: 600;
 }
 
-.nav a:not(:last-child) {
-  margin-bottom: 20px;
+.nav .home:first-child {
+  font-size: 2rem;
+  margin-top: 3rem;
 }
+.nav .home:first-child span {
+  width: 2.5rem;
+    height: 2.5rem;
+    border: solid 2px #fff;
+    margin: auto;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav_movies_list{
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  padding-top: 20px;
+}
+.nav_movies_list a{
+  font-weight: 400;
+  text-align: left;
+  color: #adaeb9
+}
+.nav_movies_list a+a{
+  margin-top: 10px;
+}
+@media screen and (max-width: 1090px) {
+  .nav {
+    left: 0;
+    top: 0;
+    /* bottom: 0px; */
+    width: 100%;
+    min-width: auto;
+    max-width: none;
+    position: fixed;
+    padding: 0;
+    height: 70px;
+    box-shadow:0px 1px 5px #2d2d2d;
+    background: linear-gradient(to right , #1e2831,#3b4e5c);
+  }
+  .nav .home:first-child{
+    /* margin-top: 0; */
+    margin: auto;
+  }
+  .nav_movies_list{display: none;}
+}
+
+
+/* .nav a:not(:last-child)::after{
+  content: "";
+  border: solid 2px #fff;
+  width: 3rem;
+  height: 3rem;
+} */

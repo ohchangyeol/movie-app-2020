@@ -1,8 +1,7 @@
 .container {
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  margin: 3rem;
 }
 
 .loader {
@@ -13,4 +12,22 @@
   align-items: center;
   font-weight: 600;
   font-size: 30px;
+  color: #fff;
+}
+.movie_list{
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  color: #fff;
+  padding-left: 20px
+}
+@media screen and (max-width: 1090px) {
+  .container{
+    width: 100%;
+    margin: 1rem;
+    padding-top: 4rem;
+  }
+  .movie_list{
+    text-align: center;
+    padding: 0;
+  }
 }
